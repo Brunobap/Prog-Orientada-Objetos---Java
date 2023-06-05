@@ -2,6 +2,7 @@ package com.exercicios.exercicios.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -10,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -36,6 +38,10 @@ public class Aluno {
     @OneToMany(mappedBy="aluno", cascade = CascadeType.PERSIST)
     @JsonManagedReference
     private List<Nota> notas;
+
+    @ManyToMany(mappedBy = "aluno", cascade = CascadeType.PERSIST)
+    @JsonBackReference
+    private List<Disciplina> disciplinas;
 
 
     public void setNome(String nome) {

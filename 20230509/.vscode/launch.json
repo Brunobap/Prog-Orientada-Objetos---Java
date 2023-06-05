@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ExerciciosApplication<exercicios>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.exercicios.exercicios.ExerciciosApplication",
+            "projectName": "exercicios",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
