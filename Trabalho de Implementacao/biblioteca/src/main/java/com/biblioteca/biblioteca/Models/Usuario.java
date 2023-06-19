@@ -1,30 +1,31 @@
 package com.biblioteca.biblioteca.Models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Usuarios")
+@Table(name = "Usuario")
 public class Usuario {    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "titulo")
-    private String titulo;
+    @Column(name = "RA")
+    private String RA;
     
-    @Column(name = "autor")
-    private String autor;
+    @Column(name = "nome")
+    private String nome;
 
-    @Column(name = "anoPublic")
-    private int anoPublicacao;
-    
-    @Column(name = "disponivel")
-    private boolean disponivel; // (indica se o livro está disponível para empréstimo)
+    @Column(name = "email")
+    private String email;
 
     public long getId() {
         return id;
@@ -32,28 +33,33 @@ public class Usuario {
     public void setId(long id) {
         this.id = id;
     }
-    public String getTitulo() {
-        return titulo;
+    public String getRA() {
+        return RA;
     }
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setRA(String RA) {
+        this.RA = RA;
     }
-    public String getAutor() {
-        return autor;
+    public String getNome() {
+        return this.nome;
     }
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
-    public int getAnoPublicacao() {
-        return anoPublicacao;
+    public String getEmail() {
+        return this.email;
     }
-    public void setAnoPublicacao(int anoPublicacao) {
-        this.anoPublicacao = anoPublicacao;
+    public void setEmail(String email) {
+        this.email = email;
+    }  
+
+    public Usuario() {
+        // ctor vazio, feito pro SpringBoot não reclamar
     }
-    public boolean isDisponivel() {
-        return disponivel;
+
+    public Usuario(long id, String ra, String nome, String email) {
+        this.id = id;
+        this.RA = ra;
+        this.nome = nome;
+        this.email = email;
     }
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
-    }    
 }
