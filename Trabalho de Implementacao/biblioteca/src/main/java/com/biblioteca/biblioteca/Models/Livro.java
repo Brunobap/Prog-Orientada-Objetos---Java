@@ -17,7 +17,7 @@ public class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
+    
     @Column(name = "titulo")
     private String titulo;
     
@@ -30,6 +30,17 @@ public class Livro {
     @Column(name = "disponivel")
     private Boolean disponivel;
 
+    @OneToOne(mappedBy = "livro", cascade = CascadeType.PERSIST)
+    @JsonManagedReference(value = "livro-reserva")
+    private Reserva reserva;
+
+    //#region Getters Setters
+    public Reserva getReserva() {
+        return reserva;
+    }
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
+    }
     public long getId() {
         return id;
     }
@@ -60,11 +71,12 @@ public class Livro {
     public void setDisponivel(Boolean disponivel) {
         this.disponivel = disponivel;
     }  
+    //#endregion
 
+    //#region ctor's
     public Livro() {
         // ctor vazio, feito pro SpringBoot não reclamar
     }
-
     public Livro(long id, String titulo, String autor, Integer anopublicacao, Boolean disponivel) {
         this.id = id;
         this.titulo = titulo;
@@ -72,4 +84,5 @@ public class Livro {
         this.anopublicacao = anopublicacao;
         this.disponivel = disponivel;
     }
+    //#endregion
 }
