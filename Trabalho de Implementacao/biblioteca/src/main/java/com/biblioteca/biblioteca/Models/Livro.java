@@ -1,7 +1,5 @@
 package com.biblioteca.biblioteca.Models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,12 +27,20 @@ public class Livro {
 
     @Column(name = "disponivel")
     private Boolean disponivel;
-
-    @OneToOne(mappedBy = "livro", cascade = CascadeType.PERSIST)
-    @JsonManagedReference(value = "livro-reserva")
+    
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Reserva reserva;
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Emprestimo emprestimo;
+
     //#region Getters Setters
+    public Emprestimo getEmprestimo() {
+        return emprestimo;
+    }
+    public void setEmprestimo(Emprestimo emprestimo) {
+        this.emprestimo = emprestimo;
+    }
     public Reserva getReserva() {
         return reserva;
     }

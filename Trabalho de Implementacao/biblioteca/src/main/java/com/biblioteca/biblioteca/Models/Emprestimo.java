@@ -13,8 +13,8 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Reserva")
-public class Reserva {    
+@Table(name = "Emprestimo")
+public class Emprestimo {    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -25,8 +25,8 @@ public class Reserva {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Usuario usuario;
 
-    @Column(name = "dataReserva")
-    private Date dataReserva;
+    @Column(name = "dataEmprestimo")
+    private Date dataEmprestimo;
 
     //#region Getters Setters
     public long getId() {
@@ -47,23 +47,23 @@ public class Reserva {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    public Date getDataReserva() {
-        return this.dataReserva;
+    public Date getDataEmprestimo() {
+        return this.dataEmprestimo;
     }
-    public void setDataReserva(Date dataReserva) {
-        this.dataReserva = dataReserva;
+    public void setDataReserva(Date dataEmprestimo) {
+        this.dataEmprestimo = dataEmprestimo;
     }  
     //#endregion
 
     //#region ctor's
-    public Reserva() {
+    public Emprestimo() {
         // ctor vazio, feito pro SpringBoot não reclamar
     }
-    public Reserva(Livro livro, Usuario usuario, Date dataReserva) {
+    public Emprestimo(Livro livro, Usuario usuario, Date dataEmprestimo) {
         //this.id = id;
         this.livro = livro;
         this.usuario = usuario;
-        this.dataReserva = dataReserva;
+        this.dataEmprestimo = dataEmprestimo;
     }
     //#endregion
 }

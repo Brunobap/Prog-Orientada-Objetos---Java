@@ -2,8 +2,6 @@ package com.biblioteca.biblioteca.Models;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,11 +27,19 @@ public class Usuario {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.PERSIST)
-    @JsonManagedReference(value = "usuario-reserva")
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Reserva> reserva;
 
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Emprestimo> emprestimo;
+
     //#region Getters Setters
+    public List<Emprestimo> getEmprestimo() {
+        return emprestimo;
+    }
+    public void setEmprestimo(List<Emprestimo> emprestimo) {
+        this.emprestimo = emprestimo;
+    }
     public List<Reserva> getReserva() {
         return reserva;
     }
