@@ -31,6 +31,6 @@ public class Main {
         Peixe peixe = new Peixe();
         peixe.mover();
 
-        System.out.println();
+        System.out.println(); 
     }
 }
