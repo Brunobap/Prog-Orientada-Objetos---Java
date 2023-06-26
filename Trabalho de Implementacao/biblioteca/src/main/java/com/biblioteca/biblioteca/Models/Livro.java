@@ -1,11 +1,16 @@
 package com.biblioteca.biblioteca.Models;
 
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -16,7 +21,7 @@ public class Livro {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column(name = "titulo")
+    @Column(name = "titulo", unique = true)
     private String titulo;
     
     @Column(name = "autor")
@@ -33,6 +38,9 @@ public class Livro {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private Emprestimo emprestimo;
+    
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Biblioteca biblioteca;
 
     //#region Getters Setters
     public Emprestimo getEmprestimo() {

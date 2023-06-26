@@ -10,6 +10,6 @@ import com.biblioteca.biblioteca.Models.Reserva;
 import com.biblioteca.biblioteca.Models.Usuario;
 
 public interface ReservaRepository extends JpaRepository<Reserva, Long> {
-    Optional<List<Reserva>> findAllByLivro (Livro livro);
+    Optional<Reserva> findByLivro (Livro livro);
     Optional<List<Reserva>> findAllByUsuario (Usuario usuario);
 }

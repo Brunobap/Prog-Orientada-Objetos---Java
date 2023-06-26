@@ -2,6 +2,9 @@ package com.biblioteca.biblioteca.Models;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,10 +28,19 @@ public class Emprestimo {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Usuario usuario;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Biblioteca biblioteca;
+
     @Column(name = "dataEmprestimo")
     private Date dataEmprestimo;
 
     //#region Getters Setters
+    public Biblioteca getBiblioteca() {
+        return biblioteca;
+    }
+    public void setBiblioteca(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
+    }
     public long getId() {
         return id;
     }
@@ -59,10 +71,10 @@ public class Emprestimo {
     public Emprestimo() {
         // ctor vazio, feito pro SpringBoot não reclamar
     }
-    public Emprestimo(Livro livro, Usuario usuario, Date dataEmprestimo) {
-        //this.id = id;
+    public Emprestimo(Livro livro, Usuario usuario, Biblioteca biblioteca, Date dataEmprestimo) {
         this.livro = livro;
         this.usuario = usuario;
+        this.biblioteca = biblioteca;
         this.dataEmprestimo = dataEmprestimo;
     }
     //#endregion

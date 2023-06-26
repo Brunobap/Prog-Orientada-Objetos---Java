@@ -10,7 +10,7 @@ import com.biblioteca.biblioteca.Models.Livro;
 import com.biblioteca.biblioteca.Models.Usuario;
 
 public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
-    Optional<List<Emprestimo>> findAllByLivro (Livro livro);
     Optional<List<Emprestimo>> findAllByUsuario (Usuario usuario);
     Optional<Emprestimo> findByLivro (Livro livro);
+    void deleteByLivro (Livro livro);
 }
